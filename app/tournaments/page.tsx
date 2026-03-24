@@ -1,0 +1,727 @@
+<<<<<<< HEAD
+export default function TournamentsPage() {
+  return (
+    <section className="page-wrap">
+      <div className="container simple-page">
+        <span className="eyebrow">Tournaments</span>
+        <h1>Promote upcoming events by city, region, state, and country.</h1>
+        <p>
+          Showcase featured tournaments, registration links, venue details, and category-based
+          event discovery with a polished tournament-first design.
+        </p>
+      </div>
+    </section>
+  )
+=======
+"use client";
+
+import { useMemo, useState } from "react";
+
+type StandingRow = {
+  id: number;
+  teamName: string;
+  city: string;
+  played: number;
+  wins: number;
+  losses: number;
+  points: number;
+};
+
+type LeagueItem = {
+  id: number;
+  leagueName: string;
+  organizerName: string;
+  country: string;
+  state: string;
+  city: string;
+  season: string;
+  format: string;
+};
+
+type TeamItem = {
+  id: number;
+  teamName: string;
+  managerName: string;
+  city: string;
+  division: string;
+};
+
+const initialStandings: StandingRow[] = [
+  { id: 1, teamName: "Temecula Aces", city: "Riverside", played: 8, wins: 7, losses: 1, points: 21 },
+  { id: 2, teamName: "Carlsbad Smash", city: "Carlsbad", played: 8, wins: 6, losses: 2, points: 18 },
+  { id: 3, teamName: "San Marcos Elite", city: "San Marcos", played: 8, wins: 5, losses: 3, points: 15 },
+  { id: 4, teamName: "Fallbrook Fire", city: "Fallbrook", played: 15, wins: 15, losses: 0, points: 45 },
+  { id: 5, teamName: "Vista Volleys", city: "Vista", played: 8, wins: 2, losses: 6, points: 6 },
+  { id: 6, teamName: "Murrieta Power", city: "Menifee", played: 8, wins: 1, losses: 7, points: 3 },
+];
+
+const initialLeagues: LeagueItem[] = [
+  {
+    id: 1,
+    leagueName: "Inland Valley Spring League",
+    organizerName: "Mike Jones",
+    country: "United States",
+    state: "California",
+    city: "Riverside",
+    season: "Spring 2026",
+    format: "Team League",
+  },
+  {
+    id: 2,
+    leagueName: "SD Coastal Challenge",
+    organizerName: "West Coast Pickleball Club",
+    country: "United States",
+    state: "California",
+    city: "Carlsbad",
+    season: "Summer 2026",
+    format: "Round Robin",
+  },
+];
+
+const initialTeams: TeamItem[] = [
+  { id: 1, teamName: "Riverside Aces", managerName: "Manager One", city: "Riverside", division: "4.0" },
+  { id: 2, teamName: "Carlsbad Smash", managerName: "Manager Two", city: "Carlsbad", division: "3.5" },
+];
+
+const defaultLeagueForm = {
+  leagueName: "",
+  organizerName: "",
+  country: "",
+  state: "",
+  city: "",
+  season: "",
+  format: "Team League",
+};
+
+const defaultTeamForm = {
+  teamName: "",
+  managerName: "",
+  city: "",
+  division: "3.5",
+};
+
+export default function LeaguesPage() {
+  const [standings] = useState<StandingRow[]>(initialStandings);
+  const [leagues, setLeagues] = useState<LeagueItem[]>(initialLeagues);
+  const [teams, setTeams] = useState<TeamItem[]>(initialTeams);
+
+  const [leagueForm, setLeagueForm] = useState(defaultLeagueForm);
+  const [teamForm, setTeamForm] = useState(defaultTeamForm);
+
+  const sortedStandings = useMemo(() => {
+    return [...standings].sort((a, b) => b.points - a.points || b.wins - a.wins);
+  }, [standings]);
+
+  function handleLeagueChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
+    const { name, value } = e.target;
+    setLeagueForm((prev) => ({ ...prev, [name]: value }));
+  }
+
+  function handleTeamChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
+    const { name, value } = e.target;
+    setTeamForm((prev) => ({ ...prev, [name]: value }));
+  }
+
+  function addLeague(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (
+      !leagueForm.leagueName ||
+      !leagueForm.organizerName ||
+      !leagueForm.country ||
+      !leagueForm.state ||
+      !leagueForm.city ||
+      !leagueForm.season
+    ) {
+      alert("Please complete all league fields.");
+      return;
+    }
+
+    const newLeague: LeagueItem = {
+      id: Date.now(),
+      leagueName: leagueForm.leagueName,
+      organizerName: leagueForm.organizerName,
+      country: leagueForm.country,
+      state: leagueForm.state,
+      city: leagueForm.city,
+      season: leagueForm.season,
+      format: leagueForm.format,
+    };
+
+    setLeagues((prev) => [newLeague, ...prev]);
+    setLeagueForm(defaultLeagueForm);
+    alert("League added successfully.");
+  }
+
+  function addTeam(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (!teamForm.teamName || !teamForm.managerName || !teamForm.city) {
+      alert("Please complete all team fields.");
+      return;
+    }
+
+    const newTeam: TeamItem = {
+      id: Date.now(),
+      teamName: teamForm.teamName,
+      managerName: teamForm.managerName,
+      city: teamForm.city,
+      division: teamForm.division,
+    };
+
+    setTeams((prev) => [newTeam, ...prev]);
+    setTeamForm(defaultTeamForm);
+    alert("Team saved successfully.");
+  }
+
+  return (
+    <main style={styles.page}>
+      <section style={styles.hero}>
+        <div style={styles.heroBadge}>MY PKLBL Leagues</div>
+        <h1 style={styles.heroTitle}>League standings, team management, and organizer tools</h1>
+        <p style={styles.heroText}>
+          Players follow standings in real time, managers run and manage teams, and organizers build leagues across cities, states, and countries.
+        </p>
+      </section>
+
+      <section style={styles.topGrid}>
+        <div style={styles.infoCard}>
+          <h2 style={styles.cardTitle}>For Players</h2>
+          <p style={styles.cardText}>
+            View current league standings, team records, and points race updates.
+          </p>
+          <button style={styles.primaryButton}>View Full Standings</button>
+        </div>
+
+        <div style={styles.infoCard}>
+          <h2 style={styles.cardTitle}>For Managers</h2>
+          <p style={styles.cardText}>
+            Log in to manage your team roster, update team details, and track league progress.
+          </p>
+          <button style={styles.darkButton}>Manager Login</button>
+        </div>
+
+        <div style={styles.infoCard}>
+          <h2 style={styles.cardTitle}>For Organizers</h2>
+          <p style={styles.cardText}>
+            Launch new leagues, assign formats, and organize competition by region.
+          </p>
+          <button style={styles.primaryButton}>Add League</button>
+        </div>
+      </section>
+
+      <section style={styles.section}>
+        <div style={styles.sectionHeader}>
+          <h2 style={styles.sectionTitle}>Current Standings</h2>
+          <p style={styles.sectionText}>
+            Live league table for players, teams, and fans.
+          </p>
+        </div>
+
+        <div style={styles.tableCard}>
+          <div style={styles.tableWrap}>
+            <table style={styles.table}>
+              <thead>
+                <tr>
+                  <th style={styles.th}>#</th>
+                  <th style={styles.th}>Team</th>
+                  <th style={styles.th}>City</th>
+                  <th style={styles.th}>Played</th>
+                  <th style={styles.th}>Wins</th>
+                  <th style={styles.th}>Losses</th>
+                  <th style={styles.th}>Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sortedStandings.map((team, index) => (
+                  <tr key={team.id} style={index === 0 ? styles.topRow : undefined}>
+                    <td style={styles.td}>{index + 1}</td>
+                    <td style={styles.tdStrong}>{team.teamName}</td>
+                    <td style={styles.td}>{team.city}</td>
+                    <td style={styles.td}>{team.played}</td>
+                    <td style={styles.td}>{team.wins}</td>
+                    <td style={styles.td}>{team.losses}</td>
+                    <td style={styles.tdPoints}>{team.points}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section style={styles.splitGrid}>
+        <div style={styles.panelCard}>
+          <div style={styles.sectionHeader}>
+            <h2 style={styles.sectionTitle}>Manager Team Area</h2>
+            <p style={styles.sectionText}>
+              Team managers can log in and add or manage their teams.
+            </p>
+          </div>
+
+          <div style={styles.loginBox}>
+            <div style={styles.loginRow}>
+              <input style={styles.input} placeholder="Manager Email" />
+            </div>
+            <div style={styles.loginRow}>
+              <input style={styles.input} placeholder="Password" type="password" />
+            </div>
+            <button style={styles.darkButtonFull}>Login as Manager</button>
+          </div>
+
+          <form onSubmit={addTeam} style={styles.formGrid}>
+            <div style={styles.field}>
+              <label style={styles.label}>Team Name</label>
+              <input
+                name="teamName"
+                value={teamForm.teamName}
+                onChange={handleTeamChange}
+                style={styles.input}
+                placeholder="Enter team name"
+              />
+            </div>
+
+            <div style={styles.field}>
+              <label style={styles.label}>Manager Name</label>
+              <input
+                name="managerName"
+                value={teamForm.managerName}
+                onChange={handleTeamChange}
+                style={styles.input}
+                placeholder="Enter manager name"
+              />
+            </div>
+
+            <div style={styles.field}>
+              <label style={styles.label}>City</label>
+              <input
+                name="city"
+                value={teamForm.city}
+                onChange={handleTeamChange}
+                style={styles.input}
+                placeholder="Temecula"
+              />
+            </div>
+
+            <div style={styles.field}>
+              <label style={styles.label}>Division</label>
+              <select
+                name="division"
+                value={teamForm.division}
+                onChange={handleTeamChange}
+                style={styles.input}
+              >
+                <option value="2.5">2.5</option>
+                <option value="3.0">3.0</option>
+                <option value="3.5">3.5</option>
+                <option value="4.0">4.0</option>
+                <option value="4.5+">4.5+</option>
+              </select>
+            </div>
+
+            <div style={styles.fullWidth}>
+              <button type="submit" style={styles.darkButtonFull}>
+                Add / Manage Team
+              </button>
+            </div>
+          </form>
+
+          <div style={styles.listCard}>
+            <h3 style={styles.subTitle}>Managed Teams</h3>
+            {teams.map((team) => (
+              <div key={team.id} style={styles.listRow}>
+                <div>
+                  <div style={styles.listMain}>{team.teamName}</div>
+                  <div style={styles.listSub}>
+                    {team.city} • Division {team.division}
+                  </div>
+                </div>
+                <span style={styles.badge}>{team.managerName}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div style={styles.panelCard}>
+          <div style={styles.sectionHeader}>
+            <h2 style={styles.sectionTitle}>Organizer League Setup</h2>
+            <p style={styles.sectionText}>
+              Organizers can add new leagues and manage regional play.
+            </p>
+          </div>
+
+          <form onSubmit={addLeague} style={styles.formGrid}>
+            <div style={styles.field}>
+              <label style={styles.label}>League Name</label>
+              <input
+                name="leagueName"
+                value={leagueForm.leagueName}
+                onChange={handleLeagueChange}
+                style={styles.input}
+                placeholder="USACPL City League"
+              />
+            </div>
+
+            <div style={styles.field}>
+              <label style={styles.label}>Organizer Name</label>
+              <input
+                name="organizerName"
+                value={leagueForm.organizerName}
+                onChange={handleLeagueChange}
+                style={styles.input}
+                placeholder="Organizer or company"
+              />
+            </div>
+
+            <div style={styles.field}>
+              <label style={styles.label}>Country</label>
+              <input
+                name="country"
+                value={leagueForm.country}
+                onChange={handleLeagueChange}
+                style={styles.input}
+                placeholder="United States"
+              />
+            </div>
+
+            <div style={styles.field}>
+              <label style={styles.label}>State / Region</label>
+              <input
+                name="state"
+                value={leagueForm.state}
+                onChange={handleLeagueChange}
+                style={styles.input}
+                placeholder="California"
+              />
+            </div>
+
+            <div style={styles.field}>
+              <label style={styles.label}>City</label>
+              <input
+                name="city"
+                value={leagueForm.city}
+                onChange={handleLeagueChange}
+                style={styles.input}
+                placeholder="Temecula"
+              />
+            </div>
+
+            <div style={styles.field}>
+              <label style={styles.label}>Season</label>
+              <input
+                name="season"
+                value={leagueForm.season}
+                onChange={handleLeagueChange}
+                style={styles.input}
+                placeholder="Spring 2026"
+              />
+            </div>
+
+            <div style={styles.field}>
+              <label style={styles.label}>Format</label>
+              <select
+                name="format"
+                value={leagueForm.format}
+                onChange={handleLeagueChange}
+                style={styles.input}
+              >
+                <option value="Team League">Team League</option>
+                <option value="Round Robin">Round Robin</option>
+                <option value="Ladder">Ladder</option>
+                <option value="Season Points">Season Points</option>
+              </select>
+            </div>
+
+            <div style={styles.fullWidth}>
+              <button type="submit" style={styles.primaryButtonFull}>
+                Add League
+              </button>
+            </div>
+          </form>
+
+          <div style={styles.listCard}>
+            <h3 style={styles.subTitle}>Active Leagues</h3>
+            {leagues.map((league) => (
+              <div key={league.id} style={styles.listRow}>
+                <div>
+                  <div style={styles.listMain}>{league.leagueName}</div>
+                  <div style={styles.listSub}>
+                    {league.city}, {league.state}, {league.country} • {league.season} • {league.format}
+                  </div>
+                </div>
+                <span style={styles.badge}>{league.organizerName}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+>>>>>>> 9dc4d4a5ac8ec9d4de04ec5b1531608aaf288e26
+}
+
+const styles: Record<string, React.CSSProperties> = {
+  page: {
+    minHeight: "100vh",
+    background: "#f5f8fb",
+    color: "#103F62",
+    padding: "32px 20px 64px",
+    fontFamily: "Arial, sans-serif",
+  },
+  hero: {
+    maxWidth: "1180px",
+    margin: "0 auto 28px",
+    background: "linear-gradient(135deg, #103F62 0%, #1A5A88 100%)",
+    borderRadius: "24px",
+    padding: "48px 32px",
+    color: "#fff",
+    boxShadow: "0 16px 40px rgba(16,63,98,0.18)",
+  },
+  heroBadge: {
+    display: "inline-block",
+    background: "#B8D033",
+    color: "#103F62",
+    fontWeight: 800,
+    borderRadius: "999px",
+    padding: "8px 14px",
+    marginBottom: "18px",
+    fontSize: "14px",
+  },
+  heroTitle: {
+    margin: 0,
+    fontSize: "42px",
+    lineHeight: 1.1,
+    fontWeight: 800,
+  },
+  heroText: {
+    marginTop: "14px",
+    maxWidth: "760px",
+    fontSize: "18px",
+    lineHeight: 1.6,
+    color: "rgba(255,255,255,0.92)",
+  },
+  topGrid: {
+    maxWidth: "1180px",
+    margin: "0 auto 28px",
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    gap: "20px",
+  },
+  infoCard: {
+    background: "#fff",
+    borderRadius: "20px",
+    padding: "24px",
+    boxShadow: "0 12px 32px rgba(16,63,98,0.08)",
+    border: "1px solid #e7eef4",
+  },
+  cardTitle: {
+    margin: 0,
+    fontSize: "24px",
+    fontWeight: 800,
+    color: "#103F62",
+  },
+  cardText: {
+    marginTop: "10px",
+    color: "#566f81",
+    lineHeight: 1.7,
+    marginBottom: "18px",
+  },
+  primaryButton: {
+    border: "none",
+    background: "#B8D033",
+    color: "#103F62",
+    fontWeight: 800,
+    height: "46px",
+    padding: "0 18px",
+    borderRadius: "12px",
+    cursor: "pointer",
+  },
+  darkButton: {
+    border: "none",
+    background: "#103F62",
+    color: "#fff",
+    fontWeight: 800,
+    height: "46px",
+    padding: "0 18px",
+    borderRadius: "12px",
+    cursor: "pointer",
+  },
+  section: {
+    maxWidth: "1180px",
+    margin: "0 auto 28px",
+  },
+  sectionHeader: {
+    marginBottom: "16px",
+  },
+  sectionTitle: {
+    margin: 0,
+    fontSize: "30px",
+    fontWeight: 800,
+    color: "#103F62",
+  },
+  sectionText: {
+    margin: "8px 0 0",
+    color: "#566f81",
+    fontSize: "16px",
+  },
+  tableCard: {
+    background: "#fff",
+    borderRadius: "20px",
+    padding: "18px",
+    boxShadow: "0 12px 32px rgba(16,63,98,0.08)",
+    border: "1px solid #e7eef4",
+  },
+  tableWrap: {
+    overflowX: "auto",
+  },
+  table: {
+    width: "100%",
+    borderCollapse: "collapse",
+  },
+  th: {
+    textAlign: "left",
+    padding: "14px 12px",
+    borderBottom: "1px solid #e8eef3",
+    color: "#6a8091",
+    fontSize: "13px",
+    textTransform: "uppercase",
+    letterSpacing: "0.04em",
+  },
+  td: {
+    padding: "16px 12px",
+    borderBottom: "1px solid #eef3f7",
+    color: "#103F62",
+    fontSize: "15px",
+  },
+  tdStrong: {
+    padding: "16px 12px",
+    borderBottom: "1px solid #eef3f7",
+    color: "#103F62",
+    fontSize: "15px",
+    fontWeight: 800,
+  },
+  tdPoints: {
+    padding: "16px 12px",
+    borderBottom: "1px solid #eef3f7",
+    color: "#103F62",
+    fontSize: "15px",
+    fontWeight: 800,
+  },
+  topRow: {
+    background: "#f9fce9",
+  },
+  splitGrid: {
+    maxWidth: "1180px",
+    margin: "0 auto",
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+    gap: "22px",
+  },
+  panelCard: {
+    background: "#fff",
+    borderRadius: "20px",
+    padding: "24px",
+    boxShadow: "0 12px 32px rgba(16,63,98,0.08)",
+    border: "1px solid #e7eef4",
+  },
+  loginBox: {
+    display: "grid",
+    gap: "12px",
+    marginBottom: "20px",
+  },
+  loginRow: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  formGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+    gap: "14px",
+  },
+  field: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "8px",
+  },
+  label: {
+    fontSize: "14px",
+    fontWeight: 700,
+    color: "#103F62",
+  },
+  input: {
+    height: "48px",
+    borderRadius: "12px",
+    border: "1px solid #d6e0e8",
+    padding: "0 14px",
+    fontSize: "15px",
+    color: "#103F62",
+    background: "#fff",
+  },
+  fullWidth: {
+    gridColumn: "1 / -1",
+  },
+  darkButtonFull: {
+    width: "100%",
+    border: "none",
+    background: "#103F62",
+    color: "#fff",
+    fontWeight: 800,
+    height: "48px",
+    borderRadius: "12px",
+    cursor: "pointer",
+  },
+  primaryButtonFull: {
+    width: "100%",
+    border: "none",
+    background: "#B8D033",
+    color: "#103F62",
+    fontWeight: 800,
+    height: "48px",
+    borderRadius: "12px",
+    cursor: "pointer",
+  },
+  listCard: {
+    marginTop: "22px",
+    background: "#f8fbfd",
+    borderRadius: "16px",
+    padding: "16px",
+    border: "1px solid #e7eef4",
+  },
+  subTitle: {
+    margin: "0 0 12px",
+    fontSize: "20px",
+    fontWeight: 800,
+    color: "#103F62",
+  },
+  listRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    gap: "12px",
+    alignItems: "center",
+    padding: "12px 0",
+    borderBottom: "1px solid #e7eef4",
+  },
+  listMain: {
+    fontWeight: 800,
+    color: "#103F62",
+    fontSize: "15px",
+  },
+  listSub: {
+    color: "#5f7788",
+    fontSize: "14px",
+    marginTop: "4px",
+  },
+  badge: {
+    background: "#eef7c7",
+    color: "#103F62",
+    borderRadius: "999px",
+    padding: "8px 12px",
+    fontWeight: 800,
+    fontSize: "12px",
+    whiteSpace: "nowrap",
+  },
+};

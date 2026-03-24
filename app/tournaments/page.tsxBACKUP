@@ -1,0 +1,347 @@
+
+export default function TournamentsPage() {
+  const featuredTournament = {
+    title: "LLPC Spring Classic",
+    date: "April 19, 2026",
+    location: "Loma Linda Grayson Center",
+    format: "Round Robin + Playoffs",
+    divisions: "Men’s, Women’s, and Mixed Doubles",
+    skillLevels: "4.5+, 4.0, 3.5, 3.0, 2.5",
+    games: "6 Guaranteed Games",
+  };
+
+  const upcomingTournaments = [
+    {
+      title: "Mission Hills Whiteout",
+      date: "April 11, 2026",
+      location: "Mission Hills Country Club",
+      details: "White outfit party, 20 lighted courts, medals, snacks, and fun atmosphere.",
+    },
+    {
+      title: "LLPC Spring Classic",
+      date: "April 19, 2026",
+      location: "Loma Linda Grayson Center",
+      details: "Beautiful 16-court venue with round robin play and playoffs.",
+    },
+    {
+      title: "MLP Team Pickleball",
+      date: "May 9, 2026",
+      location: "Eagle Glen Pickleball Club",
+      details: "4-Player Mixed Teams.",
+    },
+  ];
+
+  const features = [
+    "Round-robin plus playoffs",
+    "6 guaranteed games",
+    "3-hour tournament format",
+    "Professional event management",
+    "Medals for top finishers",
+    "Snacks, drinks, and player amenities",
+  ];
+
+  return (
+    <main
+      style={{
+        fontFamily: "Arial, sans-serif",
+        backgroundColor: "#f6f8fb",
+        color: "#103F62",
+        minHeight: "100vh",
+      }}
+    >
+      <section
+        style={{
+          background: "linear-gradient(135deg, #103F62 0%, #1a5f8f 100%)",
+          color: "white",
+          padding: "72px 24px 110px",
+        }}
+      >
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div
+            style={{
+              display: "inline-block",
+              backgroundColor: "#B8D033",
+              color: "#103F62",
+              padding: "8px 14px",
+              borderRadius: "999px",
+              fontWeight: 800,
+              marginBottom: "18px",
+            }}
+          >
+            Tournament Hub
+          </div>
+
+          <h1
+            style={{
+              fontSize: "58px",
+              lineHeight: 1.05,
+              margin: "0 0 16px 0",
+              maxWidth: "860px",
+            }}
+          >
+            Tournaments and featured events
+          </h1>
+
+          <p
+            style={{
+              fontSize: "22px",
+              lineHeight: 1.5,
+              maxWidth: "760px",
+              margin: "0 0 28px 0",
+              color: "rgba(255,255,255,0.9)",
+            }}
+          >
+            Featured events, upcoming tournaments, formats,
+            and registration.
+          </p>
+
+          <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
+            <a
+              href="#featured"
+              style={{
+                backgroundColor: "#B8D033",
+                color: "#103F62",
+                padding: "14px 22px",
+                borderRadius: "12px",
+                textDecoration: "none",
+                fontWeight: 800,
+              }}
+            >
+              Featured Tournament
+            </a>
+            <a
+              href="#upcoming"
+              style={{
+                border: "2px solid white",
+                color: "white",
+                padding: "12px 20px",
+                borderRadius: "12px",
+                textDecoration: "none",
+                fontWeight: 800,
+              }}
+            >
+              View Upcoming Events
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="featured" style={{ padding: "0 24px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", marginTop: "-56px" }}>
+          <div
+            style={{
+              backgroundColor: "white",
+              borderRadius: "24px",
+              padding: "30px",
+              boxShadow: "0 12px 30px rgba(16,63,98,0.12)",
+              border: "1px solid #dbe5ee",
+            }}
+          >
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1.1fr 0.9fr",
+                gap: "24px",
+              }}
+            >
+              <div>
+                <div
+                  style={{
+                    display: "inline-block",
+                    backgroundColor: "#e9f2c5",
+                    color: "#103F62",
+                    padding: "6px 10px",
+                    borderRadius: "999px",
+                    fontSize: "13px",
+                    fontWeight: 800,
+                    marginBottom: "14px",
+                  }}
+                >
+                  Featured Tournament
+                </div>
+
+                <h2 style={{ margin: "0 0 12px 0", fontSize: "36px" }}>
+                  {featuredTournament.title}
+                </h2>
+
+                <p style={{ margin: "0 0 10px 0", color: "#4d6274", fontSize: "18px" }}>
+                  {featuredTournament.date}
+                </p>
+                <p style={{ margin: "0 0 10px 0", color: "#4d6274", fontSize: "18px" }}>
+                  {featuredTournament.location}
+                </p>
+                <p style={{ margin: "0 0 18px 0", color: "#4d6274", fontSize: "18px" }}>
+                  {featuredTournament.format}
+                </p>
+
+                <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                  <a
+                    href="/register"
+                    style={{
+                      backgroundColor: "#103F62",
+                      color: "white",
+                      padding: "14px 20px",
+                      borderRadius: "12px",
+                      textDecoration: "none",
+                      fontWeight: 800,
+                    }}
+                  >
+                    Register Now
+                  </a>
+                  <a
+                    href="/"
+                    style={{
+                      backgroundColor: "#B8D033",
+                      color: "#103F62",
+                      padding: "14px 20px",
+                      borderRadius: "12px",
+                      textDecoration: "none",
+                      fontWeight: 800,
+                    }}
+                  >
+                    Back to Home
+                  </a>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  backgroundColor: "#f8fbfd",
+                  borderRadius: "20px",
+                  padding: "24px",
+                  border: "1px solid #dbe5ee",
+                }}
+              >
+                <h3 style={{ marginTop: 0, fontSize: "26px" }}>Tournament Snapshot</h3>
+                <div style={{ display: "grid", gap: "14px" }}>
+                  {[
+                    ["Divisions", featuredTournament.divisions],
+                    ["Skill Levels", featuredTournament.skillLevels],
+                    ["Guaranteed Games", featuredTournament.games],
+                    ["Format", featuredTournament.format],
+                  ].map(([label, value]) => (
+                    <div
+                      key={label}
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        gap: "16px",
+                        paddingBottom: "12px",
+                        borderBottom: "1px solid #e7eef4",
+                      }}
+                    >
+                      <span style={{ color: "#5b6f80", fontWeight: 700 }}>{label}</span>
+                      <span style={{ textAlign: "right", color: "#103F62", fontWeight: 700 }}>
+                        {value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: "8px 24px 56px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <h2 style={{ fontSize: "38px", margin: "0 0 10px 0" }}>Why players love these events</h2>
+          <p style={{ margin: "0 0 24px 0", color: "#5b6f80" }}>
+            Competitive, fun, organized events built for a great player experience.
+          </p>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+              gap: "18px",
+            }}
+          >
+            {features.map((feature) => (
+              <div
+                key={feature}
+                style={{
+                  backgroundColor: "white",
+                  borderRadius: "20px",
+                  padding: "24px",
+                  border: "1px solid #dbe5ee",
+                }}
+              >
+                <h3 style={{ margin: 0, fontSize: "20px" }}>{feature}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="upcoming" style={{ padding: "0 24px 72px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ marginBottom: "22px" }}>
+            <h2 style={{ fontSize: "38px", margin: "0 0 10px 0" }}>Upcoming Tournaments</h2>
+            <p style={{ margin: 0, color: "#5b6f80" }}>
+              Browse upcoming featured tournaments and event opportunities.
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: "18px",
+            }}
+          >
+            {upcomingTournaments.map((event) => (
+              <div
+                key={event.title}
+                style={{
+                  backgroundColor: "white",
+                  borderRadius: "22px",
+                  padding: "24px",
+                  border: "1px solid #dbe5ee",
+                  boxShadow: "0 10px 24px rgba(16,63,98,0.06)",
+                }}
+              >
+                <div
+                  style={{
+                    display: "inline-block",
+                    backgroundColor: "#103F62",
+                    color: "white",
+                    padding: "6px 10px",
+                    borderRadius: "999px",
+                    fontSize: "13px",
+                    fontWeight: 800,
+                    marginBottom: "14px",
+                  }}
+                >
+                  Tournament
+                </div>
+
+                <h3 style={{ margin: "0 0 10px 0", fontSize: "28px" }}>{event.title}</h3>
+                <p style={{ margin: "0 0 8px 0", color: "#4d6274" }}>{event.date}</p>
+                <p style={{ margin: "0 0 12px 0", color: "#4d6274" }}>{event.location}</p>
+                <p style={{ margin: "0 0 18px 0", color: "#4d6274", lineHeight: 1.6 }}>
+                  {event.details}
+                </p>
+
+                <a
+                  href="/register"
+                  style={{
+                    display: "inline-block",
+                    textDecoration: "none",
+                    backgroundColor: "#B8D033",
+                    color: "#103F62",
+                    padding: "12px 18px",
+                    borderRadius: "12px",
+                    fontWeight: 800,
+                  }}
+                >
+                  Register
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}

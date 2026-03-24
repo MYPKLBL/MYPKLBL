@@ -1,0 +1,395 @@
+export default function HomePage() {
+  return (
+    <main style={styles.page}>
+      <section style={styles.hero}>
+        <div style={styles.heroBadge}>MY PKLBL</div>
+        <h1 style={styles.heroTitle}>
+          A pickleball community for leagues, tournaments and much more.
+        </h1>
+        <p style={styles.heroText}>
+          MY PKLBL connects players, managers, and organizers through competitive leagues and tournaments — from local play to regional, national, and worldwide competition.
+        </p>
+
+        <div style={styles.heroActions}>
+          <a href="/leagues" style={styles.primaryButton}>
+            View Leagues
+          </a>
+          <a href="/courts" style={styles.darkButton}>
+            Book Courts
+          </a>
+          <a href="/tournaments" style={styles.secondaryButton}>
+            Explore Tournaments
+          </a>
+        </div>
+      </section>
+
+      <section style={styles.section}>
+        <div style={styles.sectionHeader}>
+          <h2 style={styles.sectionTitle}>What MY PKLBL offers</h2>
+          <p style={styles.sectionText}>
+            Core tools for every part of the pickleball ecosystem.
+          </p>
+        </div>
+
+        <div style={styles.kpiGrid}>
+          <div style={styles.kpiCard}>
+            <div style={styles.kpiNumber}>Players</div>
+            <div style={styles.kpiLabel}>
+              Follow league standinsg, search clubs and reserve courts
+            </div>
+          </div>
+          <div style={styles.kpiCard}>
+            <div style={styles.kpiNumber}>Managers</div>
+            <div style={styles.kpiLabel}>
+              Manage teams, divisions, and league participation
+            </div>
+          </div>
+          <div style={styles.kpiCard}>
+            <div style={styles.kpiNumber}>Organizers</div>
+            <div style={styles.kpiLabel}>
+              Build leagues by city, state, region, and country
+            </div>
+          </div>
+          <div style={styles.kpiCard}>
+            <div style={styles.kpiNumber}>Club Owners</div>
+            <div style={styles.kpiLabel}>
+              Post clubs, list courts, and grow reservations
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={styles.section}>
+        <div style={styles.sectionHeader}>
+          <h2 style={styles.sectionTitle}>Platform sections</h2>
+          <p style={styles.sectionText}>
+            Quick access to the most important parts of the site.
+          </p>
+        </div>
+
+        <div style={styles.featureGrid}>
+          <a href="/leagues" style={styles.featureCard}>
+            <div style={styles.featureTop}>
+              <h3 style={styles.featureTitle}>Leagues</h3>
+              <span style={styles.featureTag}>Standings</span>
+            </div>
+            <p style={styles.featureText}>
+              View standings, team records, league structure, and organizer tools.
+            </p>
+            <div style={styles.featureList}>
+              <span>Player standings</span>
+              <span>Manager access</span>
+              <span>League creation</span>
+            </div>
+          </a>
+
+          <a href="/courts" style={styles.featureCard}>
+            <div style={styles.featureTop}>
+              <h3 style={styles.featureTitle}>Courts</h3>
+              <span style={styles.featureTag}>Booking</span>
+            </div>
+            <p style={styles.featureText}>
+              Search by country, state, and city to find clubs and reserve courts.
+            </p>
+            <div style={styles.featureList}>
+              <span>USA and global search</span>
+              <span>Club posting</span>
+              <span>Reservation flow</span>
+            </div>
+          </a>
+
+          <a href="/tournaments" style={styles.featureCard}>
+            <div style={styles.featureTop}>
+              <h3 style={styles.featureTitle}>Tournaments</h3>
+              <span style={styles.featureTag}>Events</span>
+            </div>
+            <p style={styles.featureText}>
+              Promote upcoming tournaments and help players find competitive events.
+            </p>
+            <div style={styles.featureList}>
+              <span>Upcoming events</span>
+              <span>City-based visibility</span>
+              <span>Organizer promotion</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section style={styles.section}>
+        <div style={styles.infoLayout}>
+          <div style={styles.infoCard}>
+            <h2 style={styles.sectionTitle}>Who it is for</h2>
+            <div style={styles.infoRows}>
+              <div style={styles.infoRow}>
+                <div style={styles.infoLabel}>Players</div>
+                <div style={styles.infoValue}>
+                  Find leagues, book courts, and follow team performance.
+                </div>
+              </div>
+              <div style={styles.infoRow}>
+                <div style={styles.infoLabel}>Managers</div>
+                <div style={styles.infoValue}>
+                  Organize teams, track divisions, and oversee rosters.
+                </div>
+              </div>
+              <div style={styles.infoRow}>
+                <div style={styles.infoLabel}>Organizers</div>
+                <div style={styles.infoValue}>
+                  Launch leagues and create regional competition structures.
+                </div>
+              </div>
+              <div style={styles.infoRow}>
+                <div style={styles.infoLabel}>Owners</div>
+                <div style={styles.infoValue}>
+                  Post clubs, list court inventory, and increase bookings.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style={styles.infoCard}>
+            <h2 style={styles.sectionTitle}>Why it matters</h2>
+            <div style={styles.infoRows}>
+              <div style={styles.infoRow}>
+                <div style={styles.infoLabel}>Visibility</div>
+                <div style={styles.infoValue}>
+                  Players can discover local and regional opportunities faster.
+                </div>
+              </div>
+              <div style={styles.infoRow}>
+                <div style={styles.infoLabel}>Organization</div>
+                <div style={styles.infoValue}>
+                  Managers and organizers work from one structured platform.
+                </div>
+              </div>
+              <div style={styles.infoRow}>
+                <div style={styles.infoLabel}>Growth</div>
+                <div style={styles.infoValue}>
+                  Clubs and events gain more exposure across the platform.
+                </div>
+              </div>
+              <div style={styles.infoRow}>
+                <div style={styles.infoLabel}>Access</div>
+                <div style={styles.infoValue}>
+                  Built for city, state, national, and worldwide expansion.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+const styles: Record<string, React.CSSProperties> = {
+  page: {
+    minHeight: "100vh",
+    background: "#f5f8fb",
+    color: "#103F62",
+    padding: "32px 20px 64px",
+    fontFamily: "Arial, sans-serif",
+  },
+  hero: {
+    maxWidth: "1180px",
+    margin: "0 auto 28px",
+    background: "linear-gradient(135deg, #103F62 0%, #1A5A88 100%)",
+    borderRadius: "24px",
+    padding: "48px 32px",
+    color: "#fff",
+    boxShadow: "0 16px 40px rgba(16,63,98,0.18)",
+  },
+  heroBadge: {
+    display: "inline-block",
+    background: "#B8D033",
+    color: "#103F62",
+    fontWeight: 800,
+    borderRadius: "999px",
+    padding: "8px 14px",
+    marginBottom: "18px",
+    fontSize: "14px",
+  },
+  heroTitle: {
+    margin: 0,
+    fontSize: "42px",
+    lineHeight: 1.1,
+    fontWeight: 800,
+    maxWidth: "900px",
+  },
+  heroText: {
+    marginTop: "14px",
+    maxWidth: "760px",
+    fontSize: "18px",
+    lineHeight: 1.6,
+    color: "rgba(255,255,255,0.92)",
+  },
+  heroActions: {
+    display: "flex",
+    gap: "14px",
+    flexWrap: "wrap",
+    marginTop: "24px",
+  },
+  section: {
+    maxWidth: "1180px",
+    margin: "0 auto 28px",
+  },
+  sectionHeader: {
+    marginBottom: "16px",
+  },
+  sectionTitle: {
+    margin: 0,
+    fontSize: "30px",
+    fontWeight: 800,
+    color: "#103F62",
+  },
+  sectionText: {
+    margin: "8px 0 0",
+    color: "#566f81",
+    fontSize: "16px",
+  },
+  primaryButton: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textDecoration: "none",
+    border: "none",
+    background: "#B8D033",
+    color: "#103F62",
+    fontWeight: 800,
+    height: "46px",
+    padding: "0 18px",
+    borderRadius: "12px",
+    cursor: "pointer",
+  },
+  darkButton: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textDecoration: "none",
+    border: "none",
+    background: "#103F62",
+    color: "#fff",
+    fontWeight: 800,
+    height: "46px",
+    padding: "0 18px",
+    borderRadius: "12px",
+    cursor: "pointer",
+    boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.18)",
+  },
+  secondaryButton: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textDecoration: "none",
+    background: "#ffffff",
+    color: "#103F62",
+    fontWeight: 800,
+    height: "46px",
+    padding: "0 18px",
+    borderRadius: "12px",
+    cursor: "pointer",
+    border: "none",
+  },
+  kpiGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: "20px",
+  },
+  kpiCard: {
+    background: "#fff",
+    borderRadius: "20px",
+    padding: "24px",
+    boxShadow: "0 12px 32px rgba(16,63,98,0.08)",
+    border: "1px solid #e7eef4",
+  },
+  kpiNumber: {
+    fontSize: "26px",
+    fontWeight: 800,
+    color: "#103F62",
+    marginBottom: "8px",
+  },
+  kpiLabel: {
+    color: "#5a7184",
+    lineHeight: 1.7,
+    fontSize: "15px",
+  },
+  featureGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+    gap: "20px",
+  },
+  featureCard: {
+    display: "block",
+    textDecoration: "none",
+    background: "#fff",
+    borderRadius: "20px",
+    padding: "24px",
+    boxShadow: "0 12px 32px rgba(16,63,98,0.08)",
+    border: "1px solid #e7eef4",
+    color: "#103F62",
+  },
+  featureTop: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: "12px",
+    marginBottom: "12px",
+  },
+  featureTitle: {
+    margin: 0,
+    fontSize: "24px",
+    fontWeight: 800,
+  },
+  featureTag: {
+    background: "#eef7c7",
+    color: "#103F62",
+    borderRadius: "999px",
+    padding: "8px 12px",
+    fontWeight: 800,
+    fontSize: "12px",
+    whiteSpace: "nowrap",
+  },
+  featureText: {
+    margin: "0 0 16px",
+    color: "#5a7184",
+    lineHeight: 1.7,
+  },
+  featureList: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+    color: "#103F62",
+    fontWeight: 700,
+    fontSize: "14px",
+  },
+  infoLayout: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+    gap: "20px",
+  },
+  infoCard: {
+    background: "#fff",
+    borderRadius: "20px",
+    padding: "24px",
+    boxShadow: "0 12px 32px rgba(16,63,98,0.08)",
+    border: "1px solid #e7eef4",
+  },
+  infoRows: {
+    marginTop: "10px",
+  },
+  infoRow: {
+    display: "grid",
+    gridTemplateColumns: "120px 1fr",
+    gap: "14px",
+    padding: "14px 0",
+    borderBottom: "1px solid #e8eef3",
+  },
+  infoLabel: {
+    fontWeight: 800,
+    color: "#103F62",
+  },
+  infoValue: {
+    color: "#5a7184",
+    lineHeight: 1.7,
+  },
+};

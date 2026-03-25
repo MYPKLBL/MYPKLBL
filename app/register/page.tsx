@@ -1,38 +1,153 @@
+"use client";
+
+import { useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 export default function RegisterPage() {
-  return (
-    <main style={{ padding: "40px 24px", color: "#103F62" }}>
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        <a href="/" style={{ color: "#103F62", textDecoration: "none", fontWeight: 700 }}>← Back Home</a>
-        <h1>League Registration</h1>
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    role: "player",
+  });
 
-        <div style={{ backgroundColor: "white", borderRadius: "20px", padding: "24px", border: "1px solid #dbe5ee" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
-            {["First Name", "Last Name", "Email", "Phone", "Home City", "Skill Level"].map((field) => (
-              <div key={field}>
-                <label style={{ display: "block", fontWeight: 700, marginBottom: "8px" }}>{field}</label>
-                <div style={{ border: "1px solid #d5e0e8", borderRadius: "12px", padding: "14px 16px", color: "#4d6274" }}>
-                  Enter {field.toLowerCase()}
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  function updateField(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
+    setForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    const { error } = await supabase.auth.signUp({
+      email: form.email,
+      password: form.password,
+      options: {
+        data: {
+          first_name: form.firstName,
+          last_name: form.lastName,
+          role: form.role,
+        },
+      },
+    });
+
+    if (error) {
+      setMessage(error.message);
+      setLoading(false);
+      return;
+    }
+
+    setMessage("Account created. Check your email to confirm.");
+    setLoading(false);
+  }
+
+  return (
+    <main className="site-shell">
+      <section className="hero-section">
+        <div className="container">
+          <div className="page-hero-card">
+            <span className="eyebrow">Registration</span>
+            <h1>Create your MY PKLBL account.</h1>
+            <p className="hero-text">
+              Join as a player, manager, organizer, or club owner.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="container">
+          <div className="form-card">
+            <form className="modern-form" onSubmit={handleSubmit}>
+              <div className="form-grid">
+                <div className="field">
+                  <label>First Name</label>
+                  <input
+                    name="firstName"
+                    value={form.firstName}
+                    onChange={updateField}
+                    type="text"
+                    placeholder="Enter first name"
+                    required
+                  />
+                </div>
+
+                <div className="field">
+                  <label>Last Name</label>
+                  <input
+                    name="lastName"
+                    value={form.lastName}
+                    onChange={updateField}
+                    type="text"
+                    placeholder="Enter last name"
+                    required
+                  />
+                </div>
+
+                <div className="field">
+                  <label>Email</label>
+                  <input
+                    name="email"
+                    value={form.email}
+                    onChange={updateField}
+                    type="email"
+                    placeholder="Enter email"
+                    required
+                  />
+                </div>
+
+                <div className="field">
+                  <label>Role</label>
+                  <select
+                    name="role"
+                    value={form.role}
+                    onChange={updateField}
+                  >
+                    <option value="player">Player</option>
+                    <option value="manager">Manager</option>
+                    <option value="organizer">Organizer</option>
+                    <option value="club_owner">Club Owner</option>
+                  </select>
+                </div>
+
+                <div className="field full-width">
+                  <label>Password</label>
+                  <input
+                    name="password"
+                    value={form.password}
+                    onChange={updateField}
+                    type="password"
+                    placeholder="Create password"
+                    required
+                  />
                 </div>
               </div>
-            ))}
-          </div>
 
-          <button
-            style={{
-              marginTop: "20px",
-              backgroundColor: "#103F62",
-              color: "white",
-              border: "none",
-              borderRadius: "12px",
-              padding: "14px 20px",
-              fontWeight: 700,
-            }}
-          >
-            Submit Registration
-          </button>
+              <div className="form-actions">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={loading}
+                >
+                  {loading ? "Creating..." : "Create Account"}
+                </button>
+              </div>
+
+              {message ? <p>{message}</p> : null}
+            </form>
+          </div>
         </div>
-      </div>
+      </section>
     </main>
   );
 }
